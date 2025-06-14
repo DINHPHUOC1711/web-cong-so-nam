@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <title>Shop Quần Áo Công Sở</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      margin: 0;
+      background: #f8f8f8;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    /* Container sản phẩm dùng flexbox */
+    #productList {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .product {
+      flex: 0 0 calc(33.33% - 20px); /* 3 sản phẩm trên 1 hàng */
+      box-sizing: border-box;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      background: #fff;
+      padding: 15px;
+      margin: 10px 0;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      float: none; /* bỏ float */
+    }
+
+    .product img {
+  width: 100%;
+  height: 220px;        /* Chiều cao ảnh */
+  object-fit: contain;  /* Giữ tỉ lệ ảnh, không bị cắt */
+  border-radius: 8px;
+  background-color: #f9f9f9; /* Tạo nền sáng nếu ảnh có vùng trong suốt */
+}
+
+
+    .product button {
+      margin-top: 10px;
+      padding: 6px 12px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .product button:hover {
+      background: #0056b3;
+    }
+
+    #cartIcon {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: white;
+      padding: 10px;
+      border-radius: 50%;
+      border: 1px solid #ccc;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      font-size: 24px;
+      cursor: pointer;
+      transition: background 0.2s;
+      z-index: 999;
+    }
+
+    #cartIcon:hover {
+      background: #f0f0f0;
+    }
+
+    #chatbot {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 350px;
+      height: 430px;
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      z-index: 998;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Shop Quần Áo Công Sở</h1>
+
+<!-- Bao quanh danh sách sản phẩm -->
+<div id="productList">
+  <div class="product" data-id="1" data-name="Polo xanh" data-price="350000">
+    <img src="https://images.hackett.com/dw/image/v2/BCDD_PRD/on/demandware.static/-/Sites-hkt-master-catalog/default/dw2095b3be/images/hi-res/HM563432_559_02_MO.jpg?sw=600&q=95" alt="Polo xanh" />
+    <p>Polo xanh - 350.000đ</p>
+    <button onclick="addToCart(this)">Thêm vào giỏ</button>
+  </div>
+
+  <div class="product" data-id="2" data-name="Polo xanh pattel" data-price="350000">
+    <img src="https://images.hackett.com/dw/image/v2/BCDD_PRD/on/demandware.static/-/Sites-hkt-master-catalog/default/dw5c90ee9c/images/hi-res/HM563448_621_02_MO.jpg?sw=600&q=95" alt="Polo xanh pattel" />
+    <p>Polo xanh pattel - 350.000đ</p>
+    <button onclick="addToCart(this)">Thêm vào giỏ</button>
+  </div>
+
+  <div class="product" data-id="3" data-name="Sơ mi kẻ xanh" data-price="500000">
+    <img src="https://turnbullandasser.co.uk/cdn/shop/files/dd9b787e-88fa-48aa-af8b-0f3841d269f2_7d280bc3-9c7f-4746-b29b-65ec793fef48_1000x.jpg?v=1745514488" alt="Sơ mi kẻ xanh" />
+    <p>Sơ mi kẻ xanh - 500.000đ</p>
+    <button onclick="addToCart(this)">Thêm vào giỏ</button>
+  </div>
+
+  <div class="product" data-id="4" data-name="Sơ mi trắng" data-price="500000">
+    <img src="https://tmlewin.co.uk/cdn/shop/files/67923_Slim_SC_CL_Folded.jpg?v=1739962062&width=493" alt="Sơ mi trắng" />
+    <p>Sơ mi trắng - 500.000đ</p>
+    <button onclick="addToCart(this)">Thêm vào giỏ</button>
+  </div>
+
+  <div class="product" data-id="5" data-name="Sơ mi trắng plus" data-price="500000">
+    <img src="https://images.hackett.com/dw/image/v2/BCDD_PRD/on/demandware.static/-/Sites-hkt-master-catalog/default/dwbee405c2/images/hi-res/HM304529_800_02_MO.jpg?sw=600&q=95" alt="Sơ mi trắng plus" />
+    <p>Sơ mi trắng plus - 500.000đ</p>
+    <button onclick="addToCart(this)">Thêm vào giỏ</button>
+  </div>
+
+  <div class="product" data-id="6" data-name="Sơ mi Light Blue Bengal" data-price="500000">
+    <img src="https://tmlewin.co.uk/cdn/shop/files/67595_SLIM_SC_CL_Folded.jpg?v=1745404891&width=493" alt="Sơ mi Light Blue Bengal" />
+    <p>Sơ mi Light Blue Bengal - 500.000đ</p>
+    <button onclick="addToCart(this)">Thêm vào giỏ</button>
+  </div>
+
+  <div class="product" data-id="7" data-name="Tailored fit linen kent shirt" data-price="550000">
+    <img src="https://images.hackett.com/dw/image/v2/BCDD_PRD/on/demandware.static/-/Sites-hkt-master-catalog/default/dw331407b6/images/hi-res/HM3010266_802_01_MO.jpg?sw=600&q=95" alt="Tailored fit linen kent shirt" />
+    <p>Tailored fit linen kent shirt - 550.000đ</p>
+    <button onclick="addToCart(this)">Thêm vào giỏ</button>
+  </div>
+
+  <div class="product" data-id="8" data-name="Sơ mi cổ tàu xanh" data-price="450000">
+    <img src="https://images.hackett.com/dw/image/v2/BCDD_PRD/on/demandware.static/-/Sites-hkt-master-catalog/default/dwf1169af1/images/hi-res/HM3010267_591_01_FL.jpg?sw=1920&q=95" alt="Sơ mi cổ tàu xanh" />
+    <p>Sơ mi cổ tàu xanh - 450.000đ</p>
+    <button onclick="addToCart(this)">Thêm vào giỏ</button>
+  </div>
+
+  <div class="product" data-id="9" data-name="Short Sleeve Linen Shirt" data-price="400000">
+    <img src="https://api.etonshirts.com/v1/retail/image/1620/bynder/c31f0632-4f9a-4f6f-b605-58f5e3db9461/solid-short-sleeve-linen-shirt_2025-05-12T063050576Z.webp" alt="Short Sleeve Linen Shirt" />
+    <p>Short Sleeve Linen Shirt - 400.000đ</p>
+    <button onclick="addToCart(this)">Thêm vào giỏ</button>
+  </div>
+
+  <div class="product" data-id="10" data-name="classic fit short sleeve resort polo" data-price="350000">
+    <img src="https://images.hackett.com/dw/image/v2/BCDD_PRD/on/demandware.static/-/Sites-hkt-master-catalog/default/dw7994cb69/images/hi-res/HM563403_595_02_MO.jpg?sw=600&q=95" alt="classic fit short sleeve resort polo" />
+    <p>Classic fit short sleeve resort polo - 350.000đ</p>
+    <button onclick="addToCart(this)">Thêm vào giỏ</button>
+  </div>
+
+  <div class="product" data-id="11" data-name="Slim fit long sleeve pique polo" data-price="550000">
+    <img src="https://images.hackett.com/dw/image/v2/BCDD_PRD/on/demandware.static/-/Sites-hkt-master-catalog/default/dw195546a6/images/hi-res/HM550887_913_02_MO.jpg?sw=600&q=95" alt="Slim fit long sleeve pique polo" />
+    <p>Slim fit long sleeve pique polo - 550.000đ</p>
+    <button onclick="addToCart(this)">Thêm vào giỏ</button>
+  </div>
+
+  <div class="product" data-id="12" data-name="Linen Polo - Chocolate Brown" data-price="450000">
+    <img src="https://www.charlestyrwhitt.com/dw/image/v2/AAWJ_PRD/on/demandware.static/-/Sites-ctshirts-master/default/dwe650432b/hi-res/JEP0448CHC_MODEL_FRONT.jpg?sw=960&sh=1200" alt="Linen Polo - Chocolate Brown" />
+    <p>Linen Polo - Chocolate Brown - 450.000đ</p>
+    <button onclick="addToCart(this)">Thêm vào giỏ</button>
+  </div>
+</div>
+
+<!-- Icon giỏ hàng -->
+<div id="cartIcon" onclick="goToCart()" title="Xem giỏ hàng">
+  🛒
+</div>
+
+<!-- Chatbot Dialogflow -->
+<script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+<df-messenger
+  intent="WELCOME"
+  chat-title="congsonam"
+  agent-id="7b5997f9-fc8a-42d7-a229-6b5120728cd8"
+  language-code="vi"
+></df-messenger>
+
+<!-- Script giỏ hàng -->
+<script>
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+ function addToCart(button) {
+  const product = button.parentElement;
+  const id = product.getAttribute('data-id');
+  const name = product.getAttribute('data-name');
+  const price = parseInt(product.getAttribute('data-price'));
+  const img = product.querySelector('img').src; // lấy link ảnh
+
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  const item = cart.find(i => i.id === id);
+  if (item) {
+    item.qty += 1;
+  } else {
+    cart.push({ id, name, price, qty: 1, img }); // Lưu thêm img vào object
+  }
+  localStorage.setItem('cart', JSON.stringify(cart));
+  alert(`${name} đã được thêm vào giỏ hàng!`);
+}
+
+
+  function goToCart() {
+    window.location.href = "cart.html";
+  }
+</script>
+
+</body>
+</html>
